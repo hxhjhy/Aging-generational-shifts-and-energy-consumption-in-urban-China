@@ -102,7 +102,6 @@ end
 doit
 save apcd_`k'_aggff.dta, replace
 }
-restore
 log close
 
 
