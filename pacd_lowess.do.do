@@ -27,12 +27,12 @@ global energy_type "q_coal q_gas q_ele"
 
 foreach k of global energy_type {
 preserve
-collapse `k' h_age,by(year h_cohort5)
+collapse `k' h_age,by(year cohort5)
 forvalues i=1/14{
-lowess q_total h_age if h_cohort5 == `i', gen(`k`i') nograph
-lowess q_ele  h_age if h_cohort5 == `i', gen(`k`i') nograph
-lowess q_gas  h_age if h_cohort5 == `i', gen(`k`i') nograph
-lowess q_coal h_age if h_cohort5 == `i', gen(`k`i') nograph
+lowess q_total h_age if cohort5 == `i', gen(`k`i') nograph
+lowess q_ele  h_age if cohort5 == `i', gen(`k`i') nograph
+lowess q_gas  h_age if cohort5 == `i', gen(`k`i') nograph
+lowess q_coal h_age if cohort5 == `i', gen(`k`i') nograph
 }
 restore
 }
@@ -43,7 +43,7 @@ restore
 global factor "q_coal q_gas q_ele h_inc h_education h_area h_size h_job hdd cdd"
 global var "h_inc h_education h_area h_size h_job hdd cdd"
 
-collapse $factor, by(h_cohort5 year)
+collapse $factor, by(cohort5 year)
 
 gen lninc = ln(h_inc)
 gen lnhdd = ln(hdd)
