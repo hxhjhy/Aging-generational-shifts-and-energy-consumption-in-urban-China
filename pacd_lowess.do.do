@@ -21,18 +21,15 @@ tab h_age,m
 tab year,m
 drop if cohort5 > 14
 
-global energy_type "q_coal q_gas q_ele"
+global energy_type_t "q_total q_coal q_gas q_ele"
 
 *Data for Figure 1
 
-foreach k of global energy_type {
+foreach k of global energy_type_t {
 preserve
 collapse `k' h_age,by(year cohort5)
 forvalues i=1/14{
-lowess q_total h_age if cohort5 == `i', gen(`k`i') nograph
-lowess q_ele  h_age if cohort5 == `i', gen(`k`i') nograph
-lowess q_gas  h_age if cohort5 == `i', gen(`k`i') nograph
-lowess q_coal h_age if cohort5 == `i', gen(`k`i') nograph
+lowess `k' h_age if cohort5 == `i', gen(`k`i') nograph
 }
 restore
 }
@@ -42,6 +39,7 @@ restore
 
 global factor "q_coal q_gas q_ele h_inc h_education h_area h_size h_job hdd cdd"
 global var "h_inc h_education h_area h_size h_job hdd cdd"
+global energy_type "q_coal q_gas q_ele"
 
 collapse $factor, by(cohort5 year)
 
@@ -51,7 +49,7 @@ gen lncdd = ln(cdd)
 
 foreach k of global energy_type{
 
-gen ln_`k' = ln(q_coal)
+gen ln_`k' = ln(`k')
 apcd lne_`k' $var, age(h_age) period(year)
 
 mat B = e(b)
