@@ -21,24 +21,27 @@ tab h_age,m
 tab year,m
 drop if cohort5 > 14
 
+global energy_type "q_coal q_gas q_ele"
 
 *Data for Figure 1
+
+foreach k of global energy_type {
 preserve
-collapse q_ele h_age,by(year h_cohort5)
+collapse `k' h_age,by(year h_cohort5)
 forvalues i=1/14{
-lowess q_total h_age if h_cohort5 == `i', gen(q_ele`i') nograph
-lowess q_ele  h_age if h_cohort5 == `i', gen(q_ele`i') nograph
-lowess q_gas  h_age if h_cohort5 == `i', gen(q_ele`i') nograph
-lowess q_coal h_age if h_cohort5 == `i', gen(q_ele`i') nograph
+lowess q_total h_age if h_cohort5 == `i', gen(`k`i') nograph
+lowess q_ele  h_age if h_cohort5 == `i', gen(`k`i') nograph
+lowess q_gas  h_age if h_cohort5 == `i', gen(`k`i') nograph
+lowess q_coal h_age if h_cohort5 == `i', gen(`k`i') nograph
 }
 restore
+}
 
 
 *Data for Figure 2
 
 global factor "q_coal q_gas q_ele h_inc h_education h_area h_size h_job hdd cdd"
 global var "h_inc h_education h_area h_size h_job hdd cdd"
-global energy_type "h_inc h_education h_area h_size h_job hdd cdd"
 
 collapse $factor, by(h_cohort5 year)
 
