@@ -42,16 +42,14 @@ global energy_type "h_inc h_education h_area h_size h_job hdd cdd"
 
 collapse $factor, by(h_cohort5 year)
 
-gen lncoal = ln(q_coal)
-gen lngas = ln(q_gas)
-gen lnele = ln(q_ele)
 gen lninc = ln(h_inc)
 gen lnhdd = ln(hdd)
 gen lncdd = ln(cdd)
 
 foreach k of global energy_type{
 
-apcd lnele $var, age(h_age) period(year)
+gen ln_`k' = ln(q_coal)
+apcd lne_`k' $var, age(h_age) period(year)
 
 mat B = e(b)
 mat SE = e(V)
