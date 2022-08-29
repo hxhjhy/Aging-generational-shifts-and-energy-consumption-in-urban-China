@@ -9,7 +9,7 @@ analysis to capture age and generation effects, and then apply multistate model 
 
 ### Data availability
 
-In this paper, we use **China Urban Household Survey data(CUHS)** to perform age-cohort-period analysis. China Urban Household Survey data(CUHS) is an official micro survey launched by NBS to monitor the dynamic changes in the living standard of urban households. Due to security reasons, we have no right to public the dataset. But for academic purposes,researchers can apply  for access to a  subset of the data at http://www.tcdc.sem.tsinghua.edu.cn. The data related to population projections are provided in the **SI appendix**. 
+In this paper, we use **China Urban Household Survey data(CUHS)** to perform age-cohort-period analysis. China Urban Household Survey data(CUHS) is an official micro survey launched by NBS to monitor the dynamic changes in the living standard of urban households. Due to security reasons, we have no right to public the dataset. But for academic purposes,researchers can apply  for access to the data at http://www.tcdc.sem.tsinghua.edu.cn. The data related to population projections are provided in the **SI appendix**. 
 
 ### Figures and model code
 
